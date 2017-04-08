@@ -1,24 +1,20 @@
 # typeOf
-Smart typeof operator replacement
+A smart native typeof operator replacement
 
-### Magic
+### Installation
+
+```npm install typeof -S```
+
+### Usage
 ```js
-function typeOf(value) {
-  let result;
+const typeOf = require('typeof');
 
-  result = getTag(value);
-
-  return result || void 0;
-
-  function getTag(value) {
-    return ({}).toString.call(value)
-      .match(/\s([a-zA-Z]+(\s[a-zA-Z]+)*)/)[1]
-      .toLowerCase();
-  }
-}
+let isItFunction = typeOf(() => {}) === 'function';
 ```
 
 ### Examples
+
+#### ES5
 ```js
 typeOf({})
 // => 'object'
@@ -29,20 +25,41 @@ typeOf([])
 typeOf(null)
 // => 'null'
 
-typeOf([1, 2, 3].entries())
-// => 'array iterator'
+typeOf((function() { return arguments })())
+// => 'arguments'
+
+typeOf(new Error)
+// => 'error'
 
 typeOf(class {})
 // => 'function'
+```
+
+#### ES6
+```js
+typeOf(Reflect)
+// => 'object'
 
 typeOf(function* () {})
 // => 'generatorfunction'
 
-typeOf(Symbol())
-// => 'symbol'
+typeOf(async function() {})
+// => 'asyncfunction'
 
-typeOf(Symbol)
-// => 'function'
+typeOf(new Map)
+// => 'map'
+
+typeOf(new WeakMap)
+// => 'weakmap'
+
+typeOf(new Set)
+// => 'set'
+
+typeOf(new WeakSet)
+// => 'weakset'
+
+typeOf([1, 2, 3].entries())
+// => 'array iterator'
 
 typeOf(new ArrayBuffer())
 // => 'arraybuffer'
@@ -50,21 +67,42 @@ typeOf(new ArrayBuffer())
 typeOf(new DataView(new ArrayBuffer))
 // => 'dataview'
 
-typeOf((function() { return arguments })())
-// => 'arguments'
+typeOf(Proxy)
+// => 'function'
 
 typeOf(new Proxy({}, {}))
 // => 'object'
 
-typeOf(Proxy)
+typeOf(Symbol())
+// => 'symbol'
+
+typeOf(Symbol)
 // => 'function'
+```
+
+#### BOM
+
+typeOf(window)
+// => 'window'
 
 typeOf(localStorage)
 // => 'storage'
 
-typeOf(new Error)
-// => 'error'
-
 typeOf(new DOMException)
 // => 'domexception'
-```
+
+#### Node.js
+
+typeOf(global)
+// => 'global'
+
+typeOf(process)
+// => 'process'
+
+### Tests
+
+```npm test```
+
+### Release History
+
+* 0.1.0 Initial release

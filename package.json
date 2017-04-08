@@ -1,0 +1,28 @@
+{
+  "name": "typeof",
+  "version": "0.1.0",
+  "description": "A smart native typeof operator replacement",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/everget/typeOf.git"
+  },
+  "keywords": [
+    "type",
+    "detect",
+    "typeof"
+  ],
+  "author": "Alex Orekhov <alex.everget161@gmail.com> (https://github.com/everget)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/everget/typeOf/issues"
+  },
+  "homepage": "https://github.com/everget/typeOf#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
