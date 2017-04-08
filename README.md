@@ -3,11 +3,11 @@ A smart native typeof operator replacement
 
 ### Installation
 
-```npm install typeof -S```
+```npm i @everget/typeof -S```
 
 ### Usage
 ```js
-const typeOf = require('typeof');
+const typeOf = require('@everget/typeof');
 
 let isItFunction = typeOf(() => {}) === 'function';
 ```
