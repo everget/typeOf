@@ -81,7 +81,7 @@ typeOf(Symbol)
 ```
 
 #### BOM
-
+```js
 typeOf(window)
 // => 'window'
 
@@ -90,14 +90,16 @@ typeOf(localStorage)
 
 typeOf(new DOMException)
 // => 'domexception'
+```
 
 #### Node.js
-
+```js
 typeOf(global)
 // => 'global'
 
 typeOf(process)
 // => 'process'
+```
 
 ### Tests
 

@@ -1,5 +1,5 @@
 {
-  "name": "typeof",
+  "name": "@everget/typeof",
   "version": "0.1.0",
   "description": "A smart native typeof operator replacement",
   "main": "index.js",
