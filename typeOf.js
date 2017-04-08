@@ -1,4 +1,4 @@
-function typeOf(value) {
+module.exports = function typeOf(value) {
   let result;
 
   result = getTag(value);
