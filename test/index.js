@@ -68,6 +68,24 @@ describe('typeOf', () => {
     typeOf(['typeOf', 'is', 'awesome']).should.equal('array');
   });
 
+  it('should detects type of typed arrays', (done) => {
+    typeOf(new Buffer([])).should.equal('uint8array');
+    typeOf(new Int8Array).should.equal('int8array');
+    typeOf(new Int16Array).should.equal('int16array');
+    typeOf(new Int32Array).should.equal('int32array');
+    typeOf(new Float32Array).should.equal('float32array');
+    typeOf(new Float64Array).should.equal('float64array');
+    typeOf(new Uint8Array).should.equal('uint8array');
+    typeOf(new Uint8ClampedArray).should.equal('uint8clampedarray');
+    typeOf(new Uint16Array).should.equal('uint16array');
+    typeOf(new Uint32Array).should.equal('uint32array');
+    done();
+  });
+
+  it('should detects type of dates', () => {
+    typeOf(new Date).should.equal('date');
+  });
+
   it('should detects type of regexps', () => {
     typeOf(new RegExp).should.equal('regexp');
     typeOf(/foo/i).should.equal('regexp');
