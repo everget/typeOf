@@ -9,12 +9,16 @@ A smart native typeof operator replacement
 ```js
 const typeOf = require('@everget/typeof');
 
-let isItFunction = typeOf(() => {}) === 'function';
+let isFunction = (value) => typeOf(value) === 'function';
+
+if (isFunction(async () => {})) {
+  /** Do your staff */
+}
 ```
 
 ### Examples
 
-#### ES5
+#### ES
 ```js
 typeOf({})
 // => 'object'
@@ -31,8 +35,8 @@ typeOf((function() { return arguments })())
 typeOf(new Error)
 // => 'error'
 
-typeOf(class {})
-// => 'function'
+typeOf(undefined)
+// => 'underfined'
 ```
 
 #### ES6
@@ -40,11 +44,20 @@ typeOf(class {})
 typeOf(Reflect)
 // => 'object'
 
+typeOf(class {})
+// => 'function'
+
+typeOf(Proxy)
+// => 'function'
+
+typeOf(() => {})
+// => 'function'
+
 typeOf(function* () {})
-// => 'generatorfunction'
+// => 'function'
 
 typeOf(async function() {})
-// => 'asyncfunction'
+// => 'function'
 
 typeOf(new Map)
 // => 'map'
@@ -67,9 +80,6 @@ typeOf(new ArrayBuffer())
 typeOf(new DataView(new ArrayBuffer))
 // => 'dataview'
 
-typeOf(Proxy)
-// => 'function'
-
 typeOf(new Proxy({}, {}))
 // => 'object'
 
@@ -80,16 +90,16 @@ typeOf(Symbol)
 // => 'function'
 ```
 
-#### BOM
+#### Browser
 ```js
 typeOf(window)
-// => 'window'
+// => 'global'
 
 typeOf(localStorage)
 // => 'storage'
 
 typeOf(new DOMException)
-// => 'domexception'
+// => 'error'
 ```
 
 #### Node.js
@@ -109,3 +119,4 @@ typeOf(process)
 
 * 0.1.0 Initial release
 * 0.1.1 Added detection of typed arrays
+* 1.0.0 Corrections for global object, Math, JSON, async functions and generators

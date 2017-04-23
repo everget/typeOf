@@ -1,9 +1,23 @@
 module.exports = function typeOf(value) {
-  let result;
+  let result = getTag(value);
 
-  result = getTag(value);
+  if (result === 'window') {
+    result = 'global';
+  }
 
-  return result || void 0;
+  if (['asyncfunction', 'generatorfunction'].includes(result)) {
+    result = 'function';
+  }
+
+  if (result === 'domexception') {
+    result = 'error';
+  }
+
+  if (['math', 'json'].includes(result)) {
+    result = 'object';
+  }
+
+  return result;
 
   function getTag(value) {
     return ({}).toString.call(value)
