@@ -119,4 +119,4 @@ typeOf(process)
 
 * 0.1.0 Initial release
 * 0.1.1 Added detection of typed arrays
-* 1.0.0 Corrections for global object, Math, JSON, async functions and generators
+* 2.0.0 Corrections for global object, Math, JSON, async functions and generators
