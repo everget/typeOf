@@ -1,115 +1,132 @@
 # typeOf
-A smart native typeof operator replacement
+A smart typeof operator replacement and robust checker
 
 ### Installation
 
-```npm i @everget/typeof -S```
+```npm install @everget/typeof --save```
 
 ### Usage
+
 ```js
 const typeOf = require('@everget/typeof');
+```
 
-let isFunction = (value) => typeOf(value) === 'function';
+```js
+let value = 'awesome string';
 
-if (isFunction(async () => {})) {
+typeOf(value)();
+// => 'string'
+
+typeOf(value) == 'string';
+// => true
+
+typeOf(value).expect('string');
+// => true
+
+typeOf(value).expect('number');
+// => TypeError: The value is of type `string`, but expected `number`
+```
+
+```js
+/** NOTE: you must use `==` operator for correct work */
+let isMap = (value) => typeOf(value)() == 'map';
+
+let smth = new Map();
+
+if (isMap(smth)) {
   /** Do your staff */
 }
 ```
 
-### Examples
+```js
+let isFunction = (value) => {
+  return typeOf(value).expect('function|asyncfunction|generatorfunction');
+}
+
+let smth = async () => {};
+
+if (isFunction(smth)) {
+  /** Do your staff */
+}
+```
+
+```js
+function sum(a, b) {
+  typeOf(a).expect('number');
+  typeOf(b).expect('number');
+
+  return typeOf(a + b).expect('number') && (a + b);
+}
+
+sum(1, () => {});
+// => TypeError: The value is of type `function`, but expected `number`
+
+sum(1, 2);
+// => 3
+```
+
+### Examples of returned values
 
 #### ES
-```js
-typeOf({})
-// => 'object'
 
-typeOf([])
-// => 'array'
+Value                               | Type
+----------------------------------- | ----
+{}                                  | 'object'
+Math                                | 'math'
+JSON                                | 'object'
+function() {}                       | 'function'
+[]                                  | 'array'
+null                                | 'null'
+(function() { return arguments })() | 'arguments'
+new Error                           | 'error'
+undefined                           | 'underfined'
 
-typeOf(null)
-// => 'null'
+#### ES6, ES7
 
-typeOf((function() { return arguments })())
-// => 'arguments'
-
-typeOf(new Error)
-// => 'error'
-
-typeOf(undefined)
-// => 'underfined'
-```
-
-#### ES6
-```js
-typeOf(Reflect)
-// => 'object'
-
-typeOf(class {})
-// => 'function'
-
-typeOf(Proxy)
-// => 'function'
-
-typeOf(() => {})
-// => 'function'
-
-typeOf(function* () {})
-// => 'function'
-
-typeOf(async function() {})
-// => 'function'
-
-typeOf(new Map)
-// => 'map'
-
-typeOf(new WeakMap)
-// => 'weakmap'
-
-typeOf(new Set)
-// => 'set'
-
-typeOf(new WeakSet)
-// => 'weakset'
-
-typeOf([1, 2, 3].entries())
-// => 'array iterator'
-
-typeOf(new ArrayBuffer())
-// => 'arraybuffer'
-
-typeOf(new DataView(new ArrayBuffer))
-// => 'dataview'
-
-typeOf(new Proxy({}, {}))
-// => 'object'
-
-typeOf(Symbol())
-// => 'symbol'
-
-typeOf(Symbol)
-// => 'function'
-```
+Value                         | Type
+----------------------------- | ----
+Reflect                       | 'object'
+class {}                      | 'function'
+Proxy                         | 'function'
+new Proxy({}, {})             | 'object'
+() => {}                      | 'function'
+function* () {}               | 'generatorfunction'
+async function() {}           | 'asyncfunction'
+Symbol                        | 'function'
+Symbol()                      | 'symbol'
+new Map                       | 'map'
+new WeakMap                   | 'weakmap'
+new Set                       | 'set'
+new WeakSet                   | 'weakset'
+[1, 2, 3].entries()           | 'arrayiterator'
+new Set().entries()           | 'setiterator'
+new Map().entries()           | 'mapiterator'
+''[Symbol.iterator]()         | 'stringiterator'
+new ArrayBuffer()             | 'arraybuffer'
+new DataView(new ArrayBuffer) | 'dataview'
 
 #### Browser
-```js
-typeOf(window)
-// => 'global'
 
-typeOf(localStorage)
-// => 'storage'
-
-typeOf(new DOMException)
-// => 'error'
-```
+Value                              | Type
+---------------------------------- | ----
+window                             | 'global'
+document                           | 'htmldocument'
+localStorage                       | 'storage'
+new DOMException                   | 'domexception'
+document.createDocumentFragment()  | 'documentfragment'
+document.createElement('a')        | 'htmlanchorelement'
+document.createElement('body')     | 'htmlbodyelement'
+document.createElement('template') | 'htmltemplateelement'
+document.createTextNode('')        | 'text'
+document.createComment('')         | 'comment'
 
 #### Node.js
-```js
-typeOf(global)
-// => 'global'
 
-typeOf(process)
-// => 'process'
-```
+Value   | Type
+------- | ----
+global  | 'global'
+process | 'process'
+
 
 ### Tests
 
@@ -119,4 +136,5 @@ typeOf(process)
 
 * 0.1.0 Initial release
 * 0.1.1 Added detection of typed arrays
-* 1.0.0 Corrections for global object, Math, JSON, async functions and generators
+* 2.0.0 Corrections for global object, Math, JSON, async functions and generators
+* 3.0.0 Implemented new usage syntax. Added correct detection of iterators
