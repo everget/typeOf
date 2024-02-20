@@ -1,14 +1,16 @@
 # typeOf
-A smart typeof operator replacement and robust checker
+A smart replacement of the typeof operator and robust type checker
 
 ### Installation
 
-```npm install @everget/typeof --save```
+```pnpm add @everget/typeof```
 
 ### Usage
 
 ```js
 const typeOf = require('@everget/typeof');
+// or
+import typeOf from '@everget/typeof';
 ```
 
 ```js
