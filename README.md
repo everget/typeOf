@@ -1,5 +1,6 @@
 # typeOf
 A smart replacement of the typeof operator and robust type checker. This is my first ever published module on npm (2017).
+I have rewritten it to the modern stack (TypeScript, Vitest) without functional changes.
 
 ### Installation
 

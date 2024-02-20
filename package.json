@@ -1,6 +1,6 @@
 {
 	"name": "@everget/typeof",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"description": "A smart typeof operator replacement and robust checker",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
