@@ -1,5 +1,5 @@
 # typeOf
-A smart replacement of the typeof operator and robust type checker
+A smart replacement of the typeof operator and robust type checker. This is my first ever published module on npm (2017).
 
 ### Installation
 
