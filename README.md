@@ -49,7 +49,7 @@ if (isMap(smth)) {
 ```js
 let isFunction = (value) => {
   return typeOf(value).expect('function|asyncfunction|generatorfunction');
-}
+};
 
 let smth = async () => {};
 
@@ -63,7 +63,7 @@ function sum(a, b) {
   typeOf(a).expect('number');
   typeOf(b).expect('number');
 
-  return typeOf(a + b).expect('number') && (a + b);
+  return typeOf(a + b).expect('number') && a + b;
 }
 
 sum(1, () => {});
@@ -77,62 +77,62 @@ sum(1, 2);
 
 #### ES
 
-Value                               | Type
+Value | Type
 \----------------------------------- | ----
-{}                                  | 'object'
-Math                                | 'math'
-JSON                                | 'object'
-function() {}                       | 'function'
-\[]                                  | 'array'
-null                                | 'null'
+{} | 'object'
+Math | 'math'
+JSON | 'object'
+function() {} | 'function'
+\[] | 'array'
+null | 'null'
 (function() { return arguments })() | 'arguments'
-new Error                           | 'error'
-undefined                           | 'underfined'
+new Error | 'error'
+undefined | 'underfined'
 
 #### ES6, ES7
 
-Value                         | Type
+Value | Type
 \----------------------------- | ----
-Reflect                       | 'object'
-class {}                      | 'function'
-Proxy                         | 'function'
-new Proxy({}, {})             | 'object'
-() => {}                      | 'function'
-function\* () {}               | 'generatorfunction'
-async function() {}           | 'asyncfunction'
-Symbol                        | 'function'
-Symbol()                      | 'symbol'
-new Map                       | 'map'
-new WeakMap                   | 'weakmap'
-new Set                       | 'set'
-new WeakSet                   | 'weakset'
-\[1, 2, 3].entries()           | 'arrayiterator'
-new Set().entries()           | 'setiterator'
-new Map().entries()           | 'mapiterator'
-''[Symbol.iterator]()         | 'stringiterator'
-new ArrayBuffer()             | 'arraybuffer'
+Reflect | 'object'
+class {} | 'function'
+Proxy | 'function'
+new Proxy({}, {}) | 'object'
+() => {} | 'function'
+function\* () {} | 'generatorfunction'
+async function() {} | 'asyncfunction'
+Symbol | 'function'
+Symbol() | 'symbol'
+new Map | 'map'
+new WeakMap | 'weakmap'
+new Set | 'set'
+new WeakSet | 'weakset'
+\[1, 2, 3].entries() | 'arrayiterator'
+new Set().entries() | 'setiterator'
+new Map().entries() | 'mapiterator'
+''[Symbol.iterator]() | 'stringiterator'
+new ArrayBuffer() | 'arraybuffer'
 new DataView(new ArrayBuffer) | 'dataview'
 
 #### Browser
 
-Value                              | Type
+Value | Type
 \---------------------------------- | ----
-window                             | 'global'
-document                           | 'htmldocument'
-localStorage                       | 'storage'
-new DOMException                   | 'domexception'
-document.createDocumentFragment()  | 'documentfragment'
-document.createElement('a')        | 'htmlanchorelement'
-document.createElement('body')     | 'htmlbodyelement'
+window | 'global'
+document | 'htmldocument'
+localStorage | 'storage'
+new DOMException | 'domexception'
+document.createDocumentFragment() | 'documentfragment'
+document.createElement('a') | 'htmlanchorelement'
+document.createElement('body') | 'htmlbodyelement'
 document.createElement('template') | 'htmltemplateelement'
-document.createTextNode('')        | 'text'
-document.createComment('')         | 'comment'
+document.createTextNode('') | 'text'
+document.createComment('') | 'comment'
 
 #### Node.js
 
-Value   | Type
+Value | Type
 \------- | ----
-global  | 'global'
+global | 'global'
 process | 'process'
 
 ### Tests
@@ -141,7 +141,7 @@ process | 'process'
 
 ### Release History
 
-* 0.1.0 Initial release
-* 0.1.1 Added detection of typed arrays
-* 2.0.0 Corrections for global object, Math, JSON, async functions and generators
-* 3.0.0 Implemented new usage syntax. Added correct detection of iterators
+- 0.1.0 Initial release
+- 0.1.1 Added detection of typed arrays
+- 2.0.0 Corrections for global object, Math, JSON, async functions and generators
+- 3.0.0 Implemented new usage syntax. Added correct detection of iterators
