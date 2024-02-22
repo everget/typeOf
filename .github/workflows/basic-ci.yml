@@ -58,6 +58,8 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm ci-test
+      - name: List coverage files
+        run: ls -R ./coverage/
 
   finish:
     needs: unit-test

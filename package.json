@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/everget/typeOf#readme",
   "engines": {
-    "node": ">=20.x"
+    "node": ">=18.x"
   },
   "scripts": {
     "dev": "vitest",
