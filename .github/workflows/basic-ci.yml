@@ -22,6 +22,7 @@ jobs:
         with:
           node-version: '18.x'
           cache: 'pnpm'
+      - name: Type Checking
         run: |
           pnpm install --frozen-lockfile
           pnpm ci-type-check
@@ -37,6 +38,7 @@ jobs:
         with:
           node-version: '18.x'
           cache: 'pnpm'
+      - name: Linting
         run: |
           pnpm install --frozen-lockfile
           pnpm ci-lint
@@ -52,6 +54,7 @@ jobs:
         with:
           node-version: '18.x'
           cache: 'pnpm'
+      - name: Unit Testing
         run: |
           pnpm install --frozen-lockfile
           pnpm ci-test
