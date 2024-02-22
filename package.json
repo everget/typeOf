@@ -44,7 +44,7 @@
     "postversion": "pnpm i --lockfile-only && git commit -am \"chore(changeset): release\"",
     "tag": "npx changeset tag",
     "release": "pnpm build && changeset publish",
-    "ci-lint": "pnpm lint-js && pnpm lint-md",
+    "ci-lint": "pnpm types-check && pnpm lint-js && pnpm lint-md",
     "ci-test": "pnpm coverage",
     "commit": "cz",
     "prepare": "husky || true"
