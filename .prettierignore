@@ -1,0 +1,8 @@
+node_modules/
+.astro/
+.changeset/
+build/
+dist/
+
+package-lock.json
+pnpm-lock.yaml

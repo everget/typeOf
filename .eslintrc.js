@@ -1,4 +1,6 @@
 module.exports = {
+	root: true,
+
 	env: {
 		browser: true,
 		node: true,
@@ -13,18 +15,14 @@ module.exports = {
 	extends: [
 		'eslint:recommended',
 		'eslint-config-airbnb-base',
-		'eslint-config-prettier',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:@typescript-eslint/stylistic',
+		'eslint-config-prettier',
 	],
-	plugins: [
-		'@typescript-eslint',
-	],
+	plugins: ['@typescript-eslint'],
 	rules: {
 		'import/no-extraneous-dependencies': 'off',
-    	'import/no-unresolved': 'off',
-    	'import/extensions': 'off',
-	}
+		'import/no-unresolved': 'off',
+		'import/extensions': 'off',
+	},
 };
-
-

@@ -1,0 +1,63 @@
+name: Basic CI
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+env:
+  HUSKY: 0
+
+jobs:
+  lint_test_build:
+    strategy:
+      matrix:
+        #[ubuntu-22.04, ubuntu-20.04]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [20.x]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check types
+        run: pnpm type-check
+
+      - name: Linting
+        run: pnpm ci-lint
+
+      - name: Testing
+        run: pnpm ci-test
+
+      - name: Build
+        run: pnpm build
+
+  finish:
+    needs: test
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        env:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: everget/typeOf
+
+      - name: Upload coverage reports to Coveralls
+        uses: coverallsapp/github-action@v2.2.3

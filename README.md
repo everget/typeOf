@@ -1,10 +1,11 @@
 # typeOf
+
 A smart replacement of the typeof operator and robust type checker. This is my first ever published module on npm (2017).
 I have rewritten it to the modern stack (TypeScript, Vitest) without functional changes.
 
 ### Installation
 
-```pnpm add @everget/typeof```
+`pnpm add @everget/typeof`
 
 ### Usage
 
@@ -73,12 +74,12 @@ sum(1, 2);
 #### ES
 
 Value                               | Type
------------------------------------ | ----
+\----------------------------------- | ----
 {}                                  | 'object'
 Math                                | 'math'
 JSON                                | 'object'
 function() {}                       | 'function'
-[]                                  | 'array'
+\[]                                  | 'array'
 null                                | 'null'
 (function() { return arguments })() | 'arguments'
 new Error                           | 'error'
@@ -87,13 +88,13 @@ undefined                           | 'underfined'
 #### ES6, ES7
 
 Value                         | Type
------------------------------ | ----
+\----------------------------- | ----
 Reflect                       | 'object'
 class {}                      | 'function'
 Proxy                         | 'function'
 new Proxy({}, {})             | 'object'
 () => {}                      | 'function'
-function* () {}               | 'generatorfunction'
+function\* () {}               | 'generatorfunction'
 async function() {}           | 'asyncfunction'
 Symbol                        | 'function'
 Symbol()                      | 'symbol'
@@ -101,7 +102,7 @@ new Map                       | 'map'
 new WeakMap                   | 'weakmap'
 new Set                       | 'set'
 new WeakSet                   | 'weakset'
-[1, 2, 3].entries()           | 'arrayiterator'
+\[1, 2, 3].entries()           | 'arrayiterator'
 new Set().entries()           | 'setiterator'
 new Map().entries()           | 'mapiterator'
 ''[Symbol.iterator]()         | 'stringiterator'
@@ -111,7 +112,7 @@ new DataView(new ArrayBuffer) | 'dataview'
 #### Browser
 
 Value                              | Type
----------------------------------- | ----
+\---------------------------------- | ----
 window                             | 'global'
 document                           | 'htmldocument'
 localStorage                       | 'storage'
@@ -126,14 +127,13 @@ document.createComment('')         | 'comment'
 #### Node.js
 
 Value   | Type
-------- | ----
+\------- | ----
 global  | 'global'
 process | 'process'
 
-
 ### Tests
 
-```npm test```
+`npm test`
 
 ### Release History
 

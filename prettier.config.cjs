@@ -9,7 +9,22 @@ module.exports = {
 	trailingComma: 'es5',
 	printWidth: 100,
 	plugins: [
+		// 'prettier-plugin-tailwindcss',
+		// 'prettier-plugin-astro',
 	],
 	overrides: [
+		{
+			files: ['*.{json,md,yml,yaml}'],
+			options: {
+				useTabs: false,
+				tabWidth: 2,
+			},
+		},
+		// {
+		// 	files: '*.astro',
+		// 	options: {
+		// 		parser: 'astro',
+		// 	},
+		// },
 	],
 };
