@@ -3,21 +3,19 @@ name: Basic CI
 on:
   push:
     branches:
-      - '**'
+      - 'main'
   pull_request:
-    branches:
-      - '**'
+    types: [opened, synchronize, reopened]
 
 env:
   HUSKY: 0
 
 jobs:
-  lint_test_build:
+  build:
     strategy:
       matrix:
-        #[ubuntu-22.04, ubuntu-20.04]
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node-version: [20.x, 18]
+        node-version: ['20.x', '18.x']
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -33,30 +31,66 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
-      - name: Install dependencies
+      - name: Install dependencies & Build
         run: pnpm install --frozen-lockfile
-
-      - name: Linting
-        run: pnpm ci-lint
-
-      - name: Testing
-        run: pnpm ci-test
-
-      - name: Build
         run: pnpm build
 
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm ci-type-check
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm ci-lint
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm ci-test
+
   finish:
-    needs: lint_test_build
+    needs: unit-test
     runs-on: ubuntu-latest
     steps:
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
         env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          directory: ./coverage/
+          files: ./coverage-final.json
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: everget/typeOf
 
       - name: Upload coverage reports to Coveralls
         uses: coverallsapp/github-action@v2.2.3
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel-finished: true
+          path-to-lcov: './coverage/lcov.info'

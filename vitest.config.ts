@@ -5,7 +5,11 @@ export default defineConfig({
 	test: {
 		coverage: {
 			provider: 'v8',
-			reporter: ['text', 'html', 'clover', 'json'],
+			reporter: ['html', 'clover', 'json', 'lcov'],
+			exclude: [
+				'**/{husky,lint-staged}.config.*',
+				'**/.{eslint,prettier,remark}rc.{?(c|m)js,yml}',
+			],
 		},
 	},
 });
