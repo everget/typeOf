@@ -10,9 +10,7 @@ function escape(str) {
 }
 
 function escapeFileNames(filenames) {
-	return filenames
-		.map((filename) => (isWin ? filename : escape([filename])))
-		.join(' ');
+	return filenames.map((filename) => (isWin ? filename : escape([filename]))).join(' ');
 }
 
 module.exports = {
@@ -26,32 +24,25 @@ module.exports = {
 			// 	.join(' ')}`,
 			'pnpm lint-js-fix',
 			'vitest related --run --bail 1 --coverage=false',
-			`git add ${ escapeFileNames(filenames) }`,
-		]
+			`git add ${escapeFileNames(filenames)}`,
+		];
 	},
 
 	'*.{css,scss,sass,less,styl}': (filenames) => {
 		return [
 			'pnpm format-staged',
 			'stylelint --cache --fix',
-			`git add ${ escapeFileNames(filenames) }`,
+			`git add ${escapeFileNames(filenames)}`,
 		];
 	},
 
 	'*.{json,yml,yaml}': (filenames) => {
-		return [
-			'pnpm format-staged',
-			`git add ${ escapeFileNames(filenames) }`,
-		];
+		return ['pnpm format-staged', `git add ${escapeFileNames(filenames)}`];
 	},
 
 	// TODO: mdx
 	'*.{md}': (filenames) => {
-		return [
-			'pnpm format-staged',
-			'pnpm lint-md-fix',
-			`git add ${ escapeFileNames(filenames) }`,
-		];
+		return ['pnpm format-staged', 'pnpm lint-md-fix', `git add ${escapeFileNames(filenames)}`];
 	},
 
 	// EXAMPLE
@@ -61,4 +52,4 @@ module.exports = {
 	// 		`git add ${ escapeFileNames(filenames) }`,
 	// 	];
 	// },
-}
+};
