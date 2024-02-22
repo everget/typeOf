@@ -22,6 +22,7 @@ jobs:
         with:
           node-version: '18.x'
           cache: 'pnpm'
+
       - name: Type Checking
         run: |
           pnpm install --frozen-lockfile
@@ -38,6 +39,7 @@ jobs:
         with:
           node-version: '18.x'
           cache: 'pnpm'
+
       - name: Linting
         run: |
           pnpm install --frozen-lockfile
@@ -54,19 +56,30 @@ jobs:
         with:
           node-version: '18.x'
           cache: 'pnpm'
+
       - name: Unit Testing
         run: |
           pnpm install --frozen-lockfile
           pnpm ci-test
-      - name: List coverage files
-        run: ls -R ./coverage/
+
+      - name: Upload coverage artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-artifacts
+          path: ./coverage/lcov.info
 
   finish:
     needs: unit-test
     runs-on: ubuntu-latest
     steps:
+      - name: Download coverage artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-artifacts
+          path: ./coverage/lcov.info
+
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
@@ -75,7 +88,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload coverage reports to Coveralls
-        uses: coverallsapp/github-action@v2.2.3
+        uses: coverallsapp/github-action@v2
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         with:
