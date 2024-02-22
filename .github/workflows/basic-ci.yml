@@ -49,7 +49,7 @@ jobs:
         run: pnpm build
 
   finish:
-    needs: test
+    needs: lint_test_build
     if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
