@@ -1,13 +1,10 @@
 module.exports = {
 	root: true,
-
 	env: {
 		browser: true,
 		node: true,
 		es6: true,
-		mocha: true,
 	},
-	ignorePatterns: ['!src'],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',

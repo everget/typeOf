@@ -29,7 +29,7 @@
     "format-fix": "prettier . --write --ignore-unknown --cache",
     "format-staged": "prettier --write --cache",
     "format": "pnpm format-fix",
-    "type-check": "tsc",
+    "type-check": "tsc --noEmit",
     "lint-js": "eslint --max-warnings=0 --cache",
     "lint-js-directives": "eslint --report-unused-disable-directives --max-warnings=0 --cache",
     "lint-js-fix": "eslint --max-warnings=0 --cache --fix",
@@ -49,6 +49,7 @@
     "ci-lint": "pnpm lint-js && pnpm lint-md",
     "ci-test": "pnpm coverage",
     "commit": "cz",
+    "cz": "cz",
     "prepare": "husky || true"
   },
   "cacheDirectories": [
