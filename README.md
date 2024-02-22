@@ -3,7 +3,6 @@
 A smart replacement of the typeof operator and robust type checker. This is my first ever published module on npm (2017).
 I have rewritten it to the modern stack (TypeScript, Vitest) without functional changes.
 
-![GitHub release](https://img.shields.io/github/release/everget/typeOf.svg)
 [![codecov](https://codecov.io/gh/everget/typeOf/graph/badge.svg?token=BLRZNVXKZS)](https://codecov.io/gh/everget/typeOf)
 [![Coverage Status](https://coveralls.io/repos/github/everget/typeOf/badge.svg?branch=master)](https://coveralls.io/github/everget/typeOf?branch=master)
 ![License](https://img.shields.io/github/license/everget/typeOf.svg)
