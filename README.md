@@ -3,8 +3,8 @@
 A smart replacement of the typeof operator and robust type checker. This is my first ever published module on npm (2017).
 I have rewritten it to the modern stack (TypeScript, Vitest) without functional changes.
 
-[![codecov](https://codecov.io/gh/everget/typeOf/graph/badge.svg?token=BLRZNVXKZS)](https://codecov.io/gh/everget/typeOf)
-[![Coverage Status](https://coveralls.io/repos/github/everget/typeOf/badge.svg?branch=master)](https://coveralls.io/github/everget/typeOf?branch=master)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/everget/typeOf/basic-ci.yml)
+![NPM Version](https://img.shields.io/npm/v/%40everget%2Ftypeof)
 ![License](https://img.shields.io/github/license/everget/typeOf.svg)
 
 ### Installation
@@ -141,7 +141,7 @@ process | 'process'
 
 ### Release History
 
-- 0.1.0 Initial release
-- 0.1.1 Added detection of typed arrays
-- 2.0.0 Corrections for global object, Math, JSON, async functions and generators
-- 3.0.0 Implemented new usage syntax. Added correct detection of iterators
+* 0.1.0 Initial release
+* 0.1.1 Added detection of typed arrays
+* 2.0.0 Corrections for global object, Math, JSON, async functions and generators
+* 3.0.0 Implemented new usage syntax. Added correct detection of iterators
