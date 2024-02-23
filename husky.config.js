@@ -2,7 +2,9 @@ const pnpmLockCmd = 'pnpm install --frozen-lockfile';
 
 module.exports = {
 	hooks: {
+		// Instead of running "pnpm commit" or "pnpm cz" scripts:
 		// 'prepare-commit-msg': 'exec < /dev/tty && npx cz --hook || true',
+
 		'pre-commit': 'lint-staged',
 		'pre-push': 'pnpm test',
 

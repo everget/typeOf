@@ -10,7 +10,9 @@ function escape(str) {
 }
 
 function escapeFileNames(filenames) {
-	return filenames.map((filename) => (isWin ? filename : escape([filename]))).join(' ');
+	return filenames
+		.map((filename) => (isWin ? filename : escape([filename])))
+		.join(' ');
 }
 
 module.exports = {
@@ -42,7 +44,11 @@ module.exports = {
 
 	// TODO: mdx
 	'*.{md}': (filenames) => {
-		return ['pnpm format-staged', 'pnpm lint-md-fix', `git add ${escapeFileNames(filenames)}`];
+		return [
+			'pnpm format-staged',
+			'pnpm lint-md-fix',
+			`git add ${escapeFileNames(filenames)}`,
+		];
 	},
 
 	// EXAMPLE
