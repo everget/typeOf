@@ -141,7 +141,7 @@ process | 'process'
 
 ### Release History
 
-* 0.1.0 Initial release
-* 0.1.1 Added detection of typed arrays
-* 2.0.0 Corrections for global object, Math, JSON, async functions and generators
-* 3.0.0 Implemented new usage syntax. Added correct detection of iterators
+- 0.1.0 Initial release
+- 0.1.1 Added detection of typed arrays
+- 2.0.0 Corrections for global object, Math, JSON, async functions and generators
+- 3.0.0 Implemented new usage syntax. Added correct detection of iterators

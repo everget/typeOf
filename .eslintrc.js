@@ -11,10 +11,10 @@ module.exports = {
 	},
 	extends: [
 		'eslint:recommended',
-		'eslint-config-airbnb-base',
+		'airbnb-base',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:@typescript-eslint/stylistic',
-		'eslint-config-prettier',
+		'prettier',
 	],
 	plugins: ['@typescript-eslint'],
 	rules: {
